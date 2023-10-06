@@ -17,12 +17,13 @@ public class Categoria
 	private Integer id;
 	private String descricao;
 	private String ativo;
+	private String tributacao;
 	
 	public Integer getId()
 	{
 		return id;
 	}
-	public String getDescrição()
+	public String getDescricao()
 	{
 		return descricao;
 	}
@@ -30,16 +31,24 @@ public class Categoria
 	{
 		return ativo;
 	}
+	public String getTributacao()
+	{
+		return tributacao;
+	}
 	public void setId(Integer id)
 	{
 		this.id = id;
 	}
-	public void setDescrição(String descricao)
+	public void setDescricao(String descricao)
 	{
 		this.descricao = descricao;
 	}
 	public void setAtivo(String ativo)
 	{
 		this.ativo = ativo;
+	}
+	public void setTributacao(String tributacao)
+	{
+		this.tributacao = tributacao;
 	}
 }
