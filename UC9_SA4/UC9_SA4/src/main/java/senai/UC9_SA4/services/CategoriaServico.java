@@ -7,4 +7,6 @@ import senai.UC9_SA4.orm.Categoria;
 public interface CategoriaServico
 {
 	public List<Categoria> listarCategorias();
+	
+	public Categoria salvarCategorias(Categoria categoria);
 }

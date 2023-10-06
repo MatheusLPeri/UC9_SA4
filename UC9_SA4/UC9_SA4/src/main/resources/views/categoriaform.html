@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>Cadastro de categorias</h1>
+	<form th:action="@{/categoria}" th:object="${categoria}" method="post">
+		<label>Descrição</label>
+		<br>
+		<input type="text" name="descricao" th:field="*{descricao}" required>
+		<br>
+		<label>Triburação</label>
+		<br>
+		<input type="text" name="tributacao" th:field="*{tributacao}" required>
+		<br>
+		<label>Ativo</label>
+		<br>
+		<input type="text" name="ativo" th:field="*{ativo}" required>
+		<br><br>
+		<input type="submit" value="Salvar">
+	</form>
+</body>
+
+</html>

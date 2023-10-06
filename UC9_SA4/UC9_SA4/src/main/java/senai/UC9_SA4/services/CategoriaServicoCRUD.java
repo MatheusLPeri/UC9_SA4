@@ -18,4 +18,9 @@ public class CategoriaServicoCRUD implements CategoriaServico
 	{
 		return (List<Categoria>)repositorio.findAll();
 	}
+	
+	public Categoria salvarCategorias(Categoria categoria)
+	{
+		return repositorio.save(categoria);
+	}
 }
