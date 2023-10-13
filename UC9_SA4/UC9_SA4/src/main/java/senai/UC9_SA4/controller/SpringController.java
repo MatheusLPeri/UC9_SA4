@@ -51,4 +51,24 @@ public class SpringController
 		servico.apagarCategoria(id);
 		return "redirect:/categorias";
 	}
+	
+	@GetMapping("/categoria/editar/{id}")
+	public String editarCategoria(@PathVariable Integer id, Model modelo)
+	{
+		modelo.addAttribute("categoria", servico.consultarCategoriaID(id));
+		return "editarCategoria";
+	}
+	
+	@PostMapping("/categoria/{id}")
+	public String atualizarCategoria(@PathVariable Integer id, @ModelAttribute("categoria")Categoria categoria, Model modelo)
+	{
+		Categoria cat = servico.consultarCategoriaID(id);
+		cat.setId(id);
+		cat.setDescricao(categoria.getDescricao());
+		cat.setTributacao(categoria.getTributacao());
+		cat.setAtivo(categoria.getAtivo());
+		
+		servico.atualizarCategoria(categoria);
+		return "redirect:/categorias";
+	}
 }
