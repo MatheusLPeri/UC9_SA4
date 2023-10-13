@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>Atualize as informações:</h1>
+	<a href="/">Início</a>
+	<br><br>
+	<form th:action="@{/livro/{id}(id=${livro.id})}" th:object="${livro}" method="post">
+		<label>Título</label>
+		<br>
+		<input type="text" name="titulo" th:field="*{titulo}" required>
+		<br>
+		<label>Autor</label>
+		<br>
+		<input type="text" name="autor" th:field="*{autor}" required>
+		<br>
+		<label>ISBN</label>
+		<br>
+		<input type="text" name="isbn" th:field="*{isbn}" required>
+		<br>
+		<label>Editora</label>
+		<br>
+		<input type="text" name="editora" th:field="*{editora}" required>
+		<br><br>
+		<input type="submit" value="Atualizar">
+	</form>
+</body>
+
+</html>

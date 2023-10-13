@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import senai.UC9_SA4.orm.Categoria;
-import senai.UC9_SA4.services.CategoriaServico;
+import senai.UC9_SA4.orm.Livro;
+import senai.UC9_SA4.services.LivroServico;
 
 @Controller
 public class SpringController
 {
 	@Autowired
-	private CategoriaServico servico;
+	private LivroServico servico;
 
 	@GetMapping({ "/" })
 	public String path()
@@ -23,52 +23,53 @@ public class SpringController
 		return "index";
 	}
 
-	@GetMapping({ "/categorias" })
-	public String listarCategorias(Model modelo)
+	@GetMapping({ "/livros" })
+	public String listarLivros(Model modelo)
 	{
-		modelo.addAttribute("categoria", servico.listarCategorias());
-		return "categorias";
+		modelo.addAttribute("livro", servico.listarLivros());
+		return "livros";
 	}
 
-	@GetMapping("/categorias/adicionar")
-	public String adicionarCategorias(Model modelo)
+	@GetMapping("/livros/adicionar")
+	public String adicionarLivro(Model modelo)
 	{
-		Categoria categoria = new Categoria();
-		modelo.addAttribute("categoria", categoria);
-		return "categoriaform";
+		Livro livro = new Livro();
+		modelo.addAttribute("livro", livro);
+		return "livroform";
 	}
 
-	@PostMapping("/categoria")
-	public String salvarCategorias(@ModelAttribute("categoria") Categoria categoria)
+	@PostMapping("/livro")
+	public String salvarLivro(@ModelAttribute("livro") Livro livro)
 	{
-		servico.salvarCategorias(categoria);
-		return "redirect:/categorias";
+		servico.salvarLivro(livro);
+		return "redirect:/livros";
 	}
 	
-	@GetMapping({"/categoria/{id}"})
-	public String apagarCategoria(@PathVariable Integer id)
+	@GetMapping({"/livro/{id}"})
+	public String apagarLivro(@PathVariable Integer id)
 	{
-		servico.apagarCategoria(id);
-		return "redirect:/categorias";
+		servico.apagarLivro(id);
+		return "redirect:/livros";
 	}
 	
-	@GetMapping("/categoria/editar/{id}")
-	public String editarCategoria(@PathVariable Integer id, Model modelo)
+	@GetMapping("/livro/editar/{id}")
+	public String editarLivro(@PathVariable Integer id, Model modelo)
 	{
-		modelo.addAttribute("categoria", servico.consultarCategoriaID(id));
-		return "editarCategoria";
+		modelo.addAttribute("livro", servico.consultarLivroID(id));
+		return "editarLivro";
 	}
 	
-	@PostMapping("/categoria/{id}")
-	public String atualizarCategoria(@PathVariable Integer id, @ModelAttribute("categoria")Categoria categoria, Model modelo)
+	@PostMapping("/livro/{id}")
+	public String atualizarLivro(@PathVariable Integer id, @ModelAttribute("livro")Livro livro, Model modelo)
 	{
-		Categoria cat = servico.consultarCategoriaID(id);
-		cat.setId(id);
-		cat.setDescricao(categoria.getDescricao());
-		cat.setTributacao(categoria.getTributacao());
-		cat.setAtivo(categoria.getAtivo());
+		Livro liv = servico.consultarLivroID(id);
+		liv.setId(id);
+		liv.setTitulo(livro.getTitulo());
+		liv.setAutor(livro.getAutor());
+		liv.setIsbn(livro.getIsbn());
+		liv.setEditora(livro.getEditora());
 		
-		servico.atualizarCategoria(categoria);
-		return "redirect:/categorias";
+		servico.atualizarLivro(livro);
+		return "redirect:/livros";
 	}
 }

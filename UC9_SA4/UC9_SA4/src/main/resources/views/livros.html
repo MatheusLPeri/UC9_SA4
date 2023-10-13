@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Livros</title>
+</head>
+
+<body>
+	<h1>MainBooks</h1>
+	<br>
+	<a href="/">Início</a>
+	<a href="/livros/adicionar">Adicionar livros</a>	
+	<br>
+	<h2>Livros cadastrados</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Título</th>
+				<th>Autor</th>
+				<th>ISBN</th>
+				<th>Editora</th>
+				<th>Opção</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="livro:${livro}">
+				<td th:text=${livro.id}>ID</td>
+				<td th:text=${livro.titulo}>Título</td>
+				<td th:text=${livro.autor}>Autor</td>
+				<td th:text=${livro.isbn}>ISBN</td>
+				<td th:text=${livro.editora}>Opção</td>
+				<td>
+					<a th:href="@{livro/editar/{id}(id=${livro.id})}">Editar</a>
+					<a th:href="@{livro/{id}(id=${livro.id})}">Apagar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
