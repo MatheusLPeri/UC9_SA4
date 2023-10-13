@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import senai.UC9_SA4.orm.Categoria;
@@ -41,6 +42,13 @@ public class SpringController
 	public String salvarCategorias(@ModelAttribute("categoria") Categoria categoria)
 	{
 		servico.salvarCategorias(categoria);
+		return "redirect:/categorias";
+	}
+	
+	@GetMapping({"/categoria/{id}"})
+	public String apagarCategoria(@PathVariable Integer id)
+	{
+		servico.apagarCategoria(id);
 		return "redirect:/categorias";
 	}
 }
