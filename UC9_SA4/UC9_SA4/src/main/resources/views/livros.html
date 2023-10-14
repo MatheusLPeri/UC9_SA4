@@ -78,8 +78,7 @@
 								<td class="d-flex">
 									<a th:href="@{livro/editar/{id}(id=${livro.id})}"
 										class="btn btn-warning me-2">Editar</a>
-									<a th:href="@{livro/{id}(id=${livro.id})}" class="btn btn-danger me-2"
-										id="apagarBtn">Apagar</a>
+									<a th:href="@{livro/{id}(id=${livro.id})}" class="btn btn-danger me-2 apagar-btn">Apagar</a>
 								</td>
 							</tr>
 						</tbody>
@@ -89,18 +88,24 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		function confirmarExclusao() {
-			if (confirm("Tem certeza de que deseja apagar este livro?")) {
-				window.location.href = document.getElementById("apagarBtn").getAttribute("href");
-			}
-		}
+<script>
+    // Função para exibir o diálogo de confirmação e executar a ação de exclusão
+    function confirmarExclusao(event) {
+        if (confirm("Tem certeza de que deseja apagar este livro?")) {
+            // Se o usuário confirmar, redirecione para a URL de exclusão
+            window.location.href = event.target.getAttribute("href");
+        }
+    }
 
-		document.getElementById("apagarBtn").addEventListener("click", function (event) {
-			event.preventDefault();
-			confirmarExclusao();
-		});
-	</script>
+    // Adicione um ouvinte de eventos a todos os botões "Apagar" com a classe "apagar-btn"
+    const botoesApagar = document.querySelectorAll(".apagar-btn");
+    botoesApagar.forEach(function (botao) {
+        botao.addEventListener("click", function (event) {
+            event.preventDefault(); // Evita o redirecionamento automático
+            confirmarExclusao(event); // Chama a função de confirmação
+        });
+    });
+</script>
 </body>
 
 </html>
